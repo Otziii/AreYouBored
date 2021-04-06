@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/medium_space">
+
+    <TextView
+        android:id="@+id/welcome_header_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Are you bored?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/big_header_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/welcome_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/medium_space"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/welcome_header_text" />
+
+    <TextView
+        android:id="@+id/welcome_people_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_space"
+        android:text="How many people are you?"
+        app:layout_constraintTop_toBottomOf="@id/welcome_line" />
+
+    <Spinner
+        android:id="@+id/welcome_people_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_space"
+        app:layout_constraintTop_toBottomOf="@id/welcome_people_label" />
+
+    <TextView
+        android:id="@+id/welcome_money_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_space"
+        android:text="How much money you've got?"
+        app:layout_constraintTop_toBottomOf="@id/welcome_people_spinner" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/welcome_money_button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_space"
+        android:background="@drawable/unselected_button"
+        android:text="Nothing"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_money_label" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/welcome_money_button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/unselected_button"
+        android:text="Some"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toStartOf="@id/welcome_money_button_3"
+        app:layout_constraintStart_toEndOf="@id/welcome_money_button_1"
+        app:layout_constraintTop_toTopOf="@id/welcome_money_button_1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/welcome_money_button_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/unselected_button"
+        android:text="A lot!"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/welcome_money_button_1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/welcome_start_button"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/selected_button"
+        android:text="Find me something to do!"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
