@@ -1,12 +1,22 @@
 package com.jorfald.areyoubored.ui.welcome
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
+import com.jorfald.areyoubored.MainActivity
 import com.jorfald.areyoubored.R
+import com.jorfald.areyoubored.ui.SHARED_PREF_FILE_NAME
+import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_MONEY
+import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_PEOPLE
+import com.jorfald.areyoubored.ui.helpers.ButtonHelper.Companion.getCorrectBackground
+import com.jorfald.areyoubored.ui.helpers.ButtonHelper.Companion.getCorrectTextColor
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {
@@ -18,7 +28,10 @@ class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var startButton: AppCompatButton
 
-    var selectedMoney = 0
+    private var selectedPeopleNumber = 1
+    private var selectedMoney = 1
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +44,32 @@ class WelcomeActivity : AppCompatActivity() {
         moneyButton3 = welcome_money_button_3
         startButton = welcome_start_button
 
+        sharedPreferences = getSharedPreferences(SHARED_PREF_FILE_NAME, Context.MODE_PRIVATE)
+
         setUpSpinner()
         bindButtons()
+        setCorrectMoneyButton(1)
     }
 
     private fun setUpSpinner() {
+        val peopleCountList = listOf(1, 2, 3, 4, 5)
 
+        val spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, peopleCountList)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        peopleSpinner.adapter = spinnerAdapter
+
+        peopleSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                selectedPeopleNumber = peopleCountList[position]
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
+        peopleSpinner.setSelection(0)
     }
 
     private fun bindButtons() {
@@ -51,6 +84,20 @@ class WelcomeActivity : AppCompatActivity() {
         moneyButton3.setOnClickListener {
             setCorrectMoneyButton(3)
         }
+
+        startButton.setOnClickListener {
+            saveToSharedPrefs()
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun saveToSharedPrefs() {
+        val editor = sharedPreferences.edit()
+        editor.putInt(SHARED_PREF_KEY_PEOPLE, selectedPeopleNumber)
+        editor.putInt(SHARED_PREF_KEY_MONEY, selectedMoney)
+        editor.apply()
     }
 
     private fun setCorrectMoneyButton(selectedButton: Int) {
@@ -58,28 +105,28 @@ class WelcomeActivity : AppCompatActivity() {
 
         when (selectedButton) {
             2 -> {
-                moneyButton1.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton2.background = ContextCompat.getDrawable(this, R.drawable.selected_button)
-                moneyButton3.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton1.setTextColor(ContextCompat.getColor(this, R.color.blue))
-                moneyButton2.setTextColor(ContextCompat.getColor(this, R.color.white))
-                moneyButton3.setTextColor(ContextCompat.getColor(this, R.color.blue))
+                moneyButton1.background = getCorrectBackground(this, false)
+                moneyButton2.background = getCorrectBackground(this, true)
+                moneyButton3.background = getCorrectBackground(this, false)
+                moneyButton1.setTextColor(getCorrectTextColor(this, false))
+                moneyButton2.setTextColor(getCorrectTextColor(this, true))
+                moneyButton3.setTextColor(getCorrectTextColor(this, false))
             }
             3 -> {
-                moneyButton1.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton2.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton3.background = ContextCompat.getDrawable(this, R.drawable.selected_button)
-                moneyButton1.setTextColor(ContextCompat.getColor(this, R.color.blue))
-                moneyButton2.setTextColor(ContextCompat.getColor(this, R.color.blue))
-                moneyButton3.setTextColor(ContextCompat.getColor(this, R.color.white))
+                moneyButton1.background = getCorrectBackground(this, false)
+                moneyButton2.background = getCorrectBackground(this, false)
+                moneyButton3.background = getCorrectBackground(this, true)
+                moneyButton1.setTextColor(getCorrectTextColor(this, false))
+                moneyButton2.setTextColor(getCorrectTextColor(this, false))
+                moneyButton3.setTextColor(getCorrectTextColor(this, true))
             }
             else -> {
-                moneyButton1.background = ContextCompat.getDrawable(this, R.drawable.selected_button)
-                moneyButton2.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton3.background = ContextCompat.getDrawable(this, R.drawable.unselected_button)
-                moneyButton1.setTextColor(ContextCompat.getColor(this, R.color.white))
-                moneyButton2.setTextColor(ContextCompat.getColor(this, R.color.blue))
-                moneyButton3.setTextColor(ContextCompat.getColor(this, R.color.blue))
+                moneyButton1.background = getCorrectBackground(this, true)
+                moneyButton2.background = getCorrectBackground(this, false)
+                moneyButton3.background = getCorrectBackground(this, false)
+                moneyButton1.setTextColor(getCorrectTextColor(this, true))
+                moneyButton2.setTextColor(getCorrectTextColor(this, false))
+                moneyButton3.setTextColor(getCorrectTextColor(this, false))
             }
         }
     }

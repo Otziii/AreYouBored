@@ -6,60 +6,50 @@
     android:padding="@dimen/medium_space">
 
     <TextView
-        android:id="@+id/welcome_header_text"
+        android:id="@+id/settings_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Welcome!"
+        android:text="@string/settings"
         android:textColor="@color/black"
         android:textSize="@dimen/big_header_text"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/welcome_line"
+        android:id="@+id/settings_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="@dimen/medium_space"
         android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/welcome_header_text" />
+        app:layout_constraintTop_toBottomOf="@id/settings_header_text" />
 
     <TextView
-        android:id="@+id/welcome_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_space"
-        android:paddingTop="@dimen/medium_space"
-        android:paddingBottom="@dimen/medium_space"
-        android:text="We can help you if you are really bored. Just fill out these few questions and we will suggest an activity for you to do!\n\nYou will never be bored again!\nEnjoy! 😊"
-        app:layout_constraintTop_toBottomOf="@id/welcome_line" />
-
-    <TextView
-        android:id="@+id/welcome_people_label"
+        android:id="@+id/settings_people_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_space"
         android:text="@string/people_label"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/welcome_info_text" />
+        app:layout_constraintTop_toBottomOf="@id/settings_line" />
 
     <Spinner
-        android:id="@+id/welcome_people_spinner"
+        android:id="@+id/settings_people_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_space"
-        app:layout_constraintTop_toBottomOf="@id/welcome_people_label" />
+        app:layout_constraintTop_toBottomOf="@id/settings_people_label" />
 
     <TextView
-        android:id="@+id/welcome_money_label"
+        android:id="@+id/settings_money_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/big_space"
         android:text="@string/money_label"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/welcome_people_spinner" />
+        app:layout_constraintTop_toBottomOf="@id/settings_people_spinner" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/welcome_money_button_1"
+        android:id="@+id/settings_money_button_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_space"
@@ -68,22 +58,22 @@
         android:textAllCaps="false"
         android:textColor="@color/blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_money_label" />
+        app:layout_constraintTop_toBottomOf="@id/settings_money_label" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/welcome_money_button_2"
+        android:id="@+id/settings_money_button_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/unselected_button"
         android:text="@string/some"
         android:textAllCaps="false"
         android:textColor="@color/blue"
-        app:layout_constraintEnd_toStartOf="@id/welcome_money_button_3"
-        app:layout_constraintStart_toEndOf="@id/welcome_money_button_1"
-        app:layout_constraintTop_toTopOf="@id/welcome_money_button_1" />
+        app:layout_constraintEnd_toStartOf="@id/settings_money_button_3"
+        app:layout_constraintStart_toEndOf="@id/settings_money_button_1"
+        app:layout_constraintTop_toTopOf="@id/settings_money_button_1" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/welcome_money_button_3"
+        android:id="@+id/settings_money_button_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/unselected_button"
@@ -91,17 +81,6 @@
         android:textAllCaps="false"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/welcome_money_button_1" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/welcome_start_button"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/selected_button"
-        android:text="Find me something to do!"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/settings_money_button_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

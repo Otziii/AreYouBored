@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/medium_space"
+    android:background="@color/transparent"
+    app:cardCornerRadius="@dimen/medium_space"
+    app:cardPreventCornerOverlap="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/medium_space">
+
+        <TextView
+            android:id="@+id/do_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/big_text"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Play with your friends!" />
+
+        <TextView
+            android:id="@+id/do_participants_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
+            android:text="@string/participants_label"
+            android:textColor="@color/black"
+            android:textSize="@dimen/regular_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/do_title" />
+
+        <LinearLayout
+            android:id="@+id/do_participants_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/do_participants_label"
+            app:layout_constraintStart_toEndOf="@id/do_participants_label"
+            app:layout_constraintTop_toTopOf="@id/do_participants_label" />
+
+        <TextView
+            android:id="@+id/do_price_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/small_space"
+            android:text="@string/price_label"
+            android:textColor="@color/black"
+            android:textSize="@dimen/regular_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/do_participants_label" />
+
+        <TextView
+            android:id="@+id/do_price_colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/regular_text"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/do_price_label"
+            app:layout_constraintStart_toEndOf="@id/do_price_label"
+            app:layout_constraintTop_toTopOf="@id/do_price_label"
+            tools:text="$$$" />
+
+        <TextView
+            android:id="@+id/do_price_not_colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/regular_text"
+            app:layout_constraintBottom_toBottomOf="@id/do_price_colored"
+            app:layout_constraintStart_toEndOf="@id/do_price_colored"
+            app:layout_constraintTop_toTopOf="@id/do_price_colored"
+            tools:text="$$" />
+
+        <TextView
+            android:id="@+id/do_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/small_space"
+            android:text="@string/type_label"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/do_price_label" />
+
+        <TextView
+            android:id="@+id/do_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:padding="@dimen/extra_small_space"
+            android:textColor="@color/white"
+            android:textSize="@dimen/regular_text"
+            app:layout_constraintBottom_toBottomOf="@id/do_type_label"
+            app:layout_constraintStart_toEndOf="@id/do_type_label"
+            app:layout_constraintTop_toTopOf="@id/do_type_label"
+            tools:text="Recreational" />
+
+        <TextView
+            android:id="@+id/do_link_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/small_space"
+            android:paddingEnd="@dimen/small_space"
+            android:paddingBottom="@dimen/small_space"
+            android:text="@string/link_description"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/do_type_text" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/do_favorites_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:padding="@dimen/small_space"
+            android:src="@drawable/ic_star_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
