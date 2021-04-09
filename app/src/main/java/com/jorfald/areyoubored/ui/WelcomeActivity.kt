@@ -1,4 +1,4 @@
-package com.jorfald.areyoubored.ui.welcome
+package com.jorfald.areyoubored.ui
 
 import android.content.Context
 import android.content.Intent
@@ -10,13 +10,9 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.jorfald.areyoubored.MainActivity
-import com.jorfald.areyoubored.R
-import com.jorfald.areyoubored.ui.SHARED_PREF_FILE_NAME
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_MONEY
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_PEOPLE
-import com.jorfald.areyoubored.ui.helpers.ButtonHelper.Companion.getCorrectBackground
-import com.jorfald.areyoubored.ui.helpers.ButtonHelper.Companion.getCorrectTextColor
+import com.jorfald.areyoubored.*
+import com.jorfald.areyoubored.helpers.ButtonHelper.Companion.getCorrectBackground
+import com.jorfald.areyoubored.helpers.ButtonHelper.Companion.getCorrectTextColor
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {

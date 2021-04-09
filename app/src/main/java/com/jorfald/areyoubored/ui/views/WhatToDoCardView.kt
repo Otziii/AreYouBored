@@ -11,7 +11,7 @@ import androidx.core.view.isVisible
 import com.jorfald.areyoubored.R
 import kotlinx.android.synthetic.main.what_to_do_card.view.*
 
-class WhatToDoCardView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
+class WhatToDoCardView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
     private val titleTextView: TextView
     private val participantsWrapper: LinearLayout
@@ -96,6 +96,24 @@ class WhatToDoCardView(context: Context, attrs: AttributeSet) : FrameLayout(cont
             }
         } else {
             linkTextButton.isVisible = false
+        }
+    }
+
+    fun setFavorite(isFavorite: Boolean) {
+        if (isFavorite) {
+            favoritesButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_favorite
+                )
+            )
+        } else {
+            favoritesButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_star_border
+                )
+            )
         }
     }
 }

@@ -8,7 +8,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.jorfald.areyoubored.MainActivity
 import com.jorfald.areyoubored.R
-import com.jorfald.areyoubored.ui.welcome.WelcomeActivity
+import com.jorfald.areyoubored.SHARED_PREF_FILE_NAME
+import com.jorfald.areyoubored.SHARED_PREF_KEY_PEOPLE
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,6 @@ class SplashActivity : AppCompatActivity() {
                     startActivity(Intent(this, WelcomeActivity::class.java))
                 }
             }
-        }, 2000)
+        }, 500)
     }
 }

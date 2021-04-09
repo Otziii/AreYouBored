@@ -1,13 +1,31 @@
 package com.jorfald.areyoubored.ui.favorites
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jorfald.areyoubored.database.AppDatabase
+import com.jorfald.areyoubored.database.ToDoObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FavoritesViewModel : ViewModel() {
+    val favoritesListLiveData: MutableLiveData<List<ToDoObject>> = MutableLiveData()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun fetchAllFavorites(database: AppDatabase) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val toDoDAO = database.toDoDAO()
+            val list = toDoDAO.getAllItems()
+
+            favoritesListLiveData.postValue(list)
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun deleteFavorite(database: AppDatabase, favoriteToDelete: ToDoObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val toDoDAO = database.toDoDAO()
+            toDoDAO.deleteItem(favoriteToDelete)
+
+            fetchAllFavorites(database)
+        }
+    }
 }

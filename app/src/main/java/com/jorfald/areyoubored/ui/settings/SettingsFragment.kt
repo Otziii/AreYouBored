@@ -13,10 +13,10 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jorfald.areyoubored.R
-import com.jorfald.areyoubored.ui.SHARED_PREF_FILE_NAME
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_MONEY
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_PEOPLE
-import com.jorfald.areyoubored.ui.helpers.ButtonHelper
+import com.jorfald.areyoubored.SHARED_PREF_FILE_NAME
+import com.jorfald.areyoubored.SHARED_PREF_KEY_MONEY
+import com.jorfald.areyoubored.SHARED_PREF_KEY_PEOPLE
+import com.jorfald.areyoubored.helpers.ButtonHelper
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment : Fragment() {

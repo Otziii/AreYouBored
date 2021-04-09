@@ -5,7 +5,11 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
-import com.jorfald.areyoubored.ui.ToDoObject
+import com.jorfald.areyoubored.database.AppDatabase
+import com.jorfald.areyoubored.database.ToDoObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class RandomViewModel : ViewModel() {
     fun fetchRandomActivity(
@@ -44,6 +48,13 @@ class RandomViewModel : ViewModel() {
             else -> {
                 1.0
             }
+        }
+    }
+
+    fun saveFavorite(database: AppDatabase, favorite: ToDoObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val dao = database.toDoDAO()
+            dao.addItem(favorite)
         }
     }
 }

@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.volley.toolbox.Volley
 import com.jorfald.areyoubored.R
-import com.jorfald.areyoubored.ui.SHARED_PREF_FILE_NAME
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_MONEY
-import com.jorfald.areyoubored.ui.SHARED_PREF_KEY_PEOPLE
+import com.jorfald.areyoubored.SHARED_PREF_FILE_NAME
+import com.jorfald.areyoubored.SHARED_PREF_KEY_MONEY
+import com.jorfald.areyoubored.SHARED_PREF_KEY_PEOPLE
+import com.jorfald.areyoubored.database.AppDatabase
 import com.jorfald.areyoubored.ui.views.WhatToDoCardView
 import kotlinx.android.synthetic.main.fragment_random.view.*
 
@@ -60,14 +62,23 @@ class RandomFragment : Fragment() {
         val requestQueue = Volley.newRequestQueue(context)
         randomViewModel.fetchRandomActivity(requestQueue, people, money) { toDoObject ->
             if (toDoObject != null) {
+                randomCard.isVisible = true
+                
                 randomCard.setTitle(toDoObject.activity)
                 randomCard.setParticipants(toDoObject.participants)
                 randomCard.setPrice(toDoObject.price)
                 randomCard.setType(toDoObject.type)
                 randomCard.setLink(toDoObject.link)
+                randomCard.setFavorite(false)
 
                 randomCard.setFavoritesButtonClicked {
-                    Toast.makeText(context, "Favorite clicked", Toast.LENGTH_SHORT).show()
+                    randomViewModel.saveFavorite(
+                        AppDatabase.getDatabase(requireContext()),
+                        toDoObject
+                    )
+
+                    randomCard.setFavorite(true)
+                    fetchRandomActivity()
                 }
             } else {
                 Toast.makeText(context, "Something went wrong...", Toast.LENGTH_LONG).show()

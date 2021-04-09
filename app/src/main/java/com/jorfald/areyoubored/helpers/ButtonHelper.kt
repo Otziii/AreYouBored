@@ -1,4 +1,4 @@
-package com.jorfald.areyoubored.ui.helpers
+package com.jorfald.areyoubored.helpers
 
 import android.content.Context
 import android.graphics.drawable.Drawable
