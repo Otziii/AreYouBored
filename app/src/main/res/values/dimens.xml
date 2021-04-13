@@ -9,4 +9,5 @@
     <dimen name="regular_text">16sp</dimen>
     <dimen name="extra_small_space">4dp</dimen>
     <dimen name="big_text">20sp</dimen>
+    <dimen name="huge_text">30sp</dimen>
 </resources>

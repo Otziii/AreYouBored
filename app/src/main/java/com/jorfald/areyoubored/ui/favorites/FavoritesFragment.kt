@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jorfald.areyoubored.R
 import com.jorfald.areyoubored.database.AppDatabase
+import com.jorfald.areyoubored.database.ToDoObject
 import kotlinx.android.synthetic.main.fragment_favorites.view.*
+import java.io.FileDescriptor
+import java.io.PrintWriter
 
 class FavoritesFragment : Fragment() {
 
@@ -49,10 +52,8 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        val database = AppDatabase.getDatabase(requireContext())
-
         favoritesAdapter = FavoritesAdapter { favoriteClicked ->
-            favoritesViewModel.deleteFavorite(database, favoriteClicked)
+            favoritesViewModel.deleteFavorite(favoriteClicked)
         }
 
         recyclerView.adapter = favoritesAdapter
@@ -60,6 +61,6 @@ class FavoritesFragment : Fragment() {
         favoritesLayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = favoritesLayoutManager
 
-        favoritesViewModel.fetchAllFavorites(database)
+        favoritesViewModel.fetchAllFavorites()
     }
 }

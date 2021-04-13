@@ -1,10 +1,8 @@
 package com.jorfald.areyoubored.ui.random
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.google.gson.Gson
+import com.jorfald.areyoubored.ToDoRepository
 import com.jorfald.areyoubored.database.AppDatabase
 import com.jorfald.areyoubored.database.ToDoObject
 import kotlinx.coroutines.CoroutineScope
@@ -12,29 +10,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RandomViewModel : ViewModel() {
-    fun fetchRandomActivity(
-        requestQueue: RequestQueue,
-        people: Int,
-        money: Int,
-        callback: (ToDoObject?) -> Unit
-    ) {
+    private val repository = ToDoRepository()
+
+    val showLoader = MutableLiveData<Boolean>()
+    val showErrorDialog = MutableLiveData<Boolean>()
+    val fetchedToDoObject = MutableLiveData<ToDoObject>()
+
+    fun fetchRandomActivity(people: Int, money: Int) {
+        showLoader.value = true
+
         val price = convertMoneyToPrice(money)
-        var url = "https://www.boredapi.com/api/activity/"
-        url += "?participants=$people&maxprice=$price"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET,
-            url,
-            { jsonResponse ->
-                val convertedObject = Gson().fromJson(jsonResponse, ToDoObject::class.java)
-                callback(convertedObject)
-            },
-            { error ->
-                callback(null)
+        repository.fetchRandomToDo(people, price) { fetchedObject ->
+            if (fetchedObject == null) {
+                showErrorDialog.postValue(true)
+            } else {
+                fetchedToDoObject.postValue(fetchedObject)
             }
-        )
 
-        requestQueue.add(stringRequest)
+            showLoader.postValue(false)
+        }
     }
 
     private fun convertMoneyToPrice(money: Int): Double {
@@ -51,10 +45,9 @@ class RandomViewModel : ViewModel() {
         }
     }
 
-    fun saveFavorite(database: AppDatabase, favorite: ToDoObject) {
+    fun saveFavorite(favorite: ToDoObject) {
         CoroutineScope(Dispatchers.IO).launch {
-            val dao = database.toDoDAO()
-            dao.addItem(favorite)
+            repository.addToDoItemToDB(favorite)
         }
     }
 }

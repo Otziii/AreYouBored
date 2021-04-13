@@ -1,15 +1,22 @@
 package com.jorfald.areyoubored.ui.views
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import com.jorfald.areyoubored.R
 import kotlinx.android.synthetic.main.what_to_do_card.view.*
+
 
 class WhatToDoCardView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
@@ -34,7 +41,7 @@ class WhatToDoCardView(context: Context, attrs: AttributeSet?) : FrameLayout(con
     }
 
     fun setTitle(title: String) {
-        titleTextView.text = title
+        titleTextView.text = "$title!"
     }
 
     fun setParticipants(numberOfParticipants: Int) {
@@ -79,7 +86,7 @@ class WhatToDoCardView(context: Context, attrs: AttributeSet?) : FrameLayout(con
     }
 
     fun setType(type: String) {
-        typeTextView.text = type
+        typeTextView.text = type.toUpperCase()
     }
 
     fun setFavoritesButtonClicked(clickListener: OnClickListener) {
@@ -91,8 +98,8 @@ class WhatToDoCardView(context: Context, attrs: AttributeSet?) : FrameLayout(con
             linkTextButton.isVisible = true
 
             linkTextButton.setOnClickListener {
-                Toast.makeText(context, "Link clicked", Toast.LENGTH_SHORT).show()
-                //TODO: Open link in browser
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                startActivity(context, browserIntent, null)
             }
         } else {
             linkTextButton.isVisible = false
