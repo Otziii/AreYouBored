@@ -16,4 +16,6 @@
     <string name="something_else">Something else...</string>
     <string name="link_description">Click here for more info</string>
     <string name="do_later">Do later</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
